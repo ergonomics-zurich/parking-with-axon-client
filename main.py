@@ -99,15 +99,16 @@ if __name__ == '__main__':
     time.sleep(1.0)
 
     while True:
-        if len(idle):
+        if len(idle) and random.random() < 0.9:
             gid, uid = random.choice(list(idle))
             print("selected", gid, uid)
-            idle.remove((gid, uid))
 
             if not request_entry(gid, uid):
                 print(f"garage {gid} is full")
                 continue
+
             confirm_entry(gid, uid)
+            idle.remove((gid, uid))
 
         else:
             for p in active_permits():
