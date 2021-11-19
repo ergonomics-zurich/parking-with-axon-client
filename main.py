@@ -2,33 +2,6 @@ import random
 import time
 
 import requests
-import texttable
-
-
-def all_items(d: dict):
-    for k, v in sorted(d.items()):
-        if isinstance(v, dict):
-            yield from ((f"{k}.{n}", x) for n, x in all_items(v))
-        else:
-            yield str(k), v
-
-
-def all_keys(d: dict):
-    return [k for k, _ in all_items(d)]
-
-
-def table(obj):
-    t = texttable.Texttable()
-    if isinstance(obj[0], dict):
-        t.header(all_keys(obj[0]))
-        for d in obj:
-            t.add_row([v for k, v in all_items(d)])
-    else:
-        t.header(['Values'])
-        for v in obj:
-            t.add_row([v])
-    print(t.draw())
-    print()
 
 
 def cards():
